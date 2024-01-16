@@ -1,4 +1,4 @@
-package com.anleus.creedapp;
+package com.anleus.creedback;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
