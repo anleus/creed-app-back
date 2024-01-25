@@ -1,0 +1,80 @@
+openapi: "3.0.3"
+info:
+  title: AccountTs
+  description: User accounts
+tags:
+  - name: AccountTs
+paths: { }
+components:
+  schemas:
+    AccountTs:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        creationDate:
+          type: string
+          format: date-time
+          description: Time when the user was first created
+        username:
+          type: string
+          description: Username of the user
+        email:
+          type: string
+          description: Email of the user
+        groups:
+          type: array
+          description: List of groups where the account is a member
+          items:
+            $ref: "#/components/schemas/GroupTs"
+        posts:
+          type: array
+          description: List of post the account has created
+          items:
+            $ref: "#/components/schemas/PostTs"
+    GroupTs:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        creationDate:
+          type: string
+          format: date-time
+          description: Time when the group was first created
+        groupName:
+          type: string
+          description: Name of the group
+        groupDescription:
+          type: string
+          description: Description of the group
+        members:
+          type: array
+          description: List of members of the group
+          items:
+            $ref: "#/components/schemas/AccountTs"
+        posts:
+          type: array
+          description: List of post the account has created
+          items:
+            $ref: "#/components/schemas/PostTs"
+    PostTs:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        creationDate:
+          type: string
+          format: date-time
+          description: Time when the group was first created
+        postContent:
+          type: string
+          description: Content of the group
+        author:
+          description: Author of the post
+          $ref: "#/components/schemas/AccountTs"
+        group:
+          description: Group where the post has been published
+          $ref: "#/components/schemas/GroupTs"

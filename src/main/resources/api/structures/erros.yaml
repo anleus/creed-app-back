@@ -1,0 +1,21 @@
+openapi: "3.0.3"
+info:
+  title: AccountTs
+  description: User accounts
+tags:
+  - name: AccountTs
+paths: { }
+components:
+  schemas:
+    BusinessErrorTs:
+      type: object
+      required:
+        - errorCode
+        - errorMessage
+      properties:
+        errorCode:
+          type: string
+          description: Error code
+        errorMessage:
+          type: string
+          description: Detailer error message

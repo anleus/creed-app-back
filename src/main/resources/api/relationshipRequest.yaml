@@ -1,0 +1,223 @@
+openapi: "3.0.3"
+info:
+  title: Relationship Api
+  description: Relationship Interface Definition
+  version: 0.1.0
+tags:
+  - name: relationship
+paths:
+  #Account endpoints
+  /account/create:
+    post:
+      description: Creates a new user account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./structures/relationship.yaml#/components/schemas/AccountTs"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/AccountTs"
+  /account/{username}:
+    get:
+      description: Gets an account given its username
+      operationId: getAccountByUsername
+      parameters:
+        - in: path
+          name: username
+          description: Account username
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/AccountTs"
+  /account/groups/{id}:
+    get:
+      description: Gets all the groups an account belongs to
+      operationId: getAccountGroups
+      parameters:
+        - in: path
+          name: id
+          description: Account id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: "./structures/relationship.yaml#/components/schemas/GroupTs"
+  /account/{id}:
+    delete:
+      description: Deletes a user given its id and only by itself
+      operationId: deleteAccount
+      parameters:
+        - in: path
+          name: id
+          description: Account id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/AccountTs"
+
+  #Group endpoints
+  /group/create:
+    post:
+      description: Creates a new people group
+      operationId: createGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./structures/relationship.yaml#/components/schemas/GroupTs"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/GroupTs"
+  /group/{groupName}:
+    get:
+      description: Gets a group by its name
+      operationId: getGroupByName
+      parameters:
+        - in: path
+          name: groupName
+          description: Group name
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/GroupTs"
+  /group/accounts/{id}:
+    get:
+      description: Gets all the members from a group
+      operationId: getGroupAccount
+      parameters:
+        - in: path
+          name: id
+          description: Group id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: "./structures/relationship.yaml#/components/schemas/AccountTs"
+
+  /group/{groupId}/{userId}:
+    put:
+      description: Changes the current group admin
+      operationId: changeAdmin
+      parameters:
+        - in: path
+          name: groupId
+          description: Group id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: userId
+          description: New admin id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/GroupTs"
+
+  #Post endpoints
+  /post/create:
+    post:
+      description: Publish a new post in a group
+      operationId: createPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./structures/relationship.yaml#/components/schemas/PostTs"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "./structures/relationship.yaml#/components/schemas/PostTs"
+  /post/account/{id}:
+    get:
+      description: Gets all the posts an account has created
+      operationId: getAccountPosts
+      parameters:
+        - in: path
+          name: id
+          description: Account id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: "./structures/relationship.yaml#/components/schemas/PostTs"
+  /post/group/{id}:
+    get:
+      description: Gets all the posts posted in a group
+      operationId: getGroupPosts
+      parameters:
+        - in: path
+          name: id
+          description: Account id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: "./structures/relationship.yaml#/components/schemas/PostTs"
