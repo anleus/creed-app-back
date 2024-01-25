@@ -11,11 +11,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "POST")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

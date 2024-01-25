@@ -11,11 +11,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "PEOPLE_GROUP")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
