@@ -9,5 +9,4 @@ public class CreedAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CreedAppApplication.class, args);
 	}
-
 }

@@ -13,9 +13,6 @@ import java.util.List;
 @RequestMapping(value = "/posts")
 public class PostControllerImpl implements PostApi {
 
-    @Autowired
-    private PostService postService;
-
     @Override
     public ResponseEntity<PostTs> createPost(PostTs postTs) {
         return null;

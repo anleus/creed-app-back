@@ -12,10 +12,6 @@ import java.util.List;
 
 @RestController
 public class GroupControllerImpl implements GroupApi {
-
-    @Autowired
-    private GroupService groupService;
-
     @Override
     public ResponseEntity<GroupTs> changeAdmin(String groupId, String userId) {
         return null;
